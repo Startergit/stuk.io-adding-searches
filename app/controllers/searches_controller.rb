@@ -2,6 +2,7 @@ class SearchesController < ApplicationController
 
 	def new
 		@search = Search.new
+		@categories = Book.uniq.pluck(:category)
 	end
 
 	def create
@@ -17,4 +18,5 @@ class SearchesController < ApplicationController
 
 	def search_params
 		params.require(:search).permit(:keywords, :category, :min_price, :max_price, :isbn)
+	end
 end
